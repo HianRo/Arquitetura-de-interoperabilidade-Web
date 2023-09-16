@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Implementação de Processamento Assíncrono</title>
+</head>
+<body>
+    <h1>Página Principal do E-commerce</h1>
+    <button id="meuBotao">Clique-me</button>
+
+    <script>
+        // Passo 1: Acionamento da Requisição
+        document.getElementById("meuBotao").addEventListener("click", function () {
+            // Passo 2: Configuração do Objeto XMLHttpRequest
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://exemplo.com/api/dados", true);
+
+            // Passo 3: Definição das Funções de Callback
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Passo 5: Recebimento da Resposta
+                    console.log("Resposta da API:", xhr.responseText);
+
+                    // Passo 6: Atualização da Página (simulação)
+                    document.getElementById("resultado").innerHTML = xhr.responseText;
+                } else {
+                    // Tratar erros de servidor (status diferente de 200)
+                    console.error("Erro na requisição. Status:", xhr.status, "Mensagem:", xhr.statusText);
+                }
+            };
+
+            xhr.onerror = function () {
+                // Tratar erros de rede ou outros problemas
+                console.error("Erro de rede ao fazer a requisição.");
+            };
+
+            // Passo 4: Envio da Requisição
+            xhr.send();
+        });
+    </script>
+    <div id="resultado"></div>
+</body>
+</html>
